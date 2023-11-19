@@ -6,11 +6,15 @@ const BASE_URL = 'https://api.thecatapi.com';
 const END_POINT_BREEDS = 'v1/breeds';
 const END_POINT_SEARCH = 'v1/images/search';
 
-async function fetchBreeds() {
-  const resp = await axios.get(`${BASE_URL}/${END_POINT_BREEDS}`);
+function errorScan(resp) {
   if (resp.status != 200) {
     throw Error(resp.statusText || 'Anknown error');
   }
+}
+
+async function fetchBreeds() {
+  const resp = await axios.get(`${BASE_URL}/${END_POINT_BREEDS}`);
+  errorScan(resp);
   return resp.data;
 }
 
@@ -18,10 +22,7 @@ async function fetchCatByBreed(breed_ids) {
   const resp = await axios.get(
     `${BASE_URL}/${END_POINT_SEARCH}?breed_ids=${breed_ids}`
   );
-  if (resp.status != 200) {
-    throw Error(resp.statusText || 'Anknown error');
-  }
-  console.log(resp.data[0]);
+  errorScan(resp);
   return resp.data[0];
 }
 

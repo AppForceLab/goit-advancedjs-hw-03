@@ -5,7 +5,6 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 let breadData = [];
 const catInfoPlaceholder = document.querySelector('.cat-info');
-const loaderSelect = document.querySelector('.loader-select');
 const selectWrap = document.querySelector('.selet-wrap');
 const loaderInfo = document.querySelector('.loader-info');
 
@@ -19,9 +18,8 @@ const breedSelect = new SlimSelect({
 });
 
 function buildSelect() {
-  setVisibility(loaderSelect, true);
+  setVisibility(loaderInfo, true);
   setVisibility(selectWrap, false);
-
   fetchBreeds()
     .then(data => {
       data.forEach(({ name, id }) => {
@@ -32,8 +30,6 @@ function buildSelect() {
       });
       console.log(breadData);
       breedSelect.setData(breadData);
-
-      setVisibility(loaderSelect, false);
       setVisibility(selectWrap, true);
     })
     .catch(err => {
@@ -41,7 +37,8 @@ function buildSelect() {
         title: err.message,
         message: 'Try againe later',
       });
-    });
+    })
+    .finally(() => setVisibility(loaderInfo, false));
 }
 
 buildSelect();
@@ -69,8 +66,6 @@ function onSelect(values) {
              <p><span class="info-box_span">Temperament:</span> ${catInfo.temperament}</p>
          </div>`;
       }
-
-      setVisibility(loaderInfo, false);
       catInfoPlaceholder.innerHTML = imgContent + textContent;
     })
     .catch(err => {
@@ -78,7 +73,8 @@ function onSelect(values) {
         title: err.message,
         message: 'Try againe later',
       });
-    });
+    })
+    .finally(() => setVisibility(loaderInfo, false));
 }
 
 function setVisibility(el, isVisible) {
