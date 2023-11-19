@@ -1,0 +1,66 @@
+@import url('../../node_modules/slim-select/dist/slimselect.css');
+@import url('./loader.css');
+
+.select-box {
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.breed-select {
+  align-self: flex-start;
+  margin: 20px;
+  width: 280px;
+}
+
+.cat-info-box {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 300px;
+}
+
+.cat-info {
+  align-self: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1000px;
+  margin: 20px;
+  column-gap: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+  .cat-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-box {
+  max-width: 100%;
+  gap: 40px;
+}
+
+.cat-img {
+  max-width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+}
+
+.info-box_span {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
