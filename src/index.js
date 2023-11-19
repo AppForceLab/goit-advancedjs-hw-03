@@ -28,7 +28,6 @@ function buildSelect() {
           value: id,
         });
       });
-      console.log(breadData);
       breedSelect.setData(breadData);
       setVisibility(selectWrap, true);
     })
