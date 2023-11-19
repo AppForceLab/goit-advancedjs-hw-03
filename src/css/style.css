@@ -1,6 +1,11 @@
 @import url('../../node_modules/slim-select/dist/slimselect.css');
 @import url('./loader.css');
 
+.selet-wrap {
+  align-self: flex-start;
+  margin: 20px;
+}
+
 .select-box {
   position: relative;
   flex-direction: column;
@@ -10,8 +15,6 @@
 }
 
 .breed-select {
-  align-self: flex-start;
-  margin: 20px;
   width: 280px;
 }
 

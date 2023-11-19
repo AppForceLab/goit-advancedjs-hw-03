@@ -1,5 +1,7 @@
 import SlimSelect from 'slim-select';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 let breadData = [];
 const catInfoPlaceholder = document.querySelector('.cat-info');
@@ -35,7 +37,10 @@ function buildSelect() {
       setVisibility(selectWrap, true);
     })
     .catch(err => {
-      console.log(err);
+      iziToast.error({
+        title: err.message,
+        message: 'Try againe later',
+      });
     });
 }
 
@@ -53,7 +58,7 @@ function onSelect(values) {
       let textContent = ``;
 
       if (url) {
-        imgContent = ` <img class="cat-img" src="${url}" alt="cat picture"/>`;
+        imgContent = ` <img class="cat-img" src="${url}" alt="cat image"/>`;
       }
 
       if (catInfo) {
@@ -64,10 +69,16 @@ function onSelect(values) {
              <p><span class="info-box_span">Temperament:</span> ${catInfo.temperament}</p>
          </div>`;
       }
+
       setVisibility(loaderInfo, false);
       catInfoPlaceholder.innerHTML = imgContent + textContent;
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      iziToast.error({
+        title: err.message,
+        message: 'Try againe later',
+      });
+    });
 }
 
 function setVisibility(el, isVisible) {
