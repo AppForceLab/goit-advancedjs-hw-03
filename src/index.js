@@ -14,7 +14,7 @@ const breedSelect = new SlimSelect({
     showSearch: false,
     placeholderText: 'Choose the breed',
   },
-  events: { afterChange: onSelect },
+  events: { beforeChange: onSelect },
 });
 
 function buildSelect() {
@@ -33,8 +33,8 @@ function buildSelect() {
     })
     .catch(err => {
       iziToast.error({
-        title: err.message,
-        message: 'Try againe later',
+        title: 'Something went wrong try reload the page!',
+        message: '',
       });
     })
     .finally(() => setVisibility(loaderInfo, false));
@@ -69,8 +69,8 @@ function onSelect(values) {
     })
     .catch(err => {
       iziToast.error({
-        title: err.message,
-        message: 'Try againe later',
+        title: 'Something went wrong try reload the page!',
+        message: '',
       });
     })
     .finally(() => setVisibility(loaderInfo, false));
